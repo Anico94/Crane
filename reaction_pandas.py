@@ -16,11 +16,23 @@ for i in range(1,10):
     overall_dataframe = reaction_summary.iloc[lambda x: x.index == i]
     continue
   df = reaction_summary.iloc[lambda x: x.index == i]
-  df = df.reset_index()
-  overall_dataframe = overall_dataframe.join(df,rsuffix=f'_{i}')
 
-#Write to excel
-overall_dataframe.to_excel('output.xlsx', sheet_name='Reactions')
+  overall_dataframe = overall_dataframe.join(df.reset_index(),rsuffix=f'_{i}')
+
+# print(overall_dataframe)
+# Write to excel
+# overall_dataframe.to_excel('output.xlsx', sheet_name='Reactions')
+
+data = {
+    ('A', 'Fx'): [1, 2, 3],
+    ('A', 'Fy'): [4, 5, 6],
+    ('A', 'Fz'): [7, 8, 9],
+}
+
+df = pd.DataFrame(data,index=[0,45,90])
+# print(df.index.name='Load Direction')
+
+# df.to_excel('output.xlsx', sheet_name='Reactions')
 
 
 
